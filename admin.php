@@ -170,10 +170,9 @@
                         <li class="list-divider"></li>
 
                         <li class="nav-small-cap"><span class="hide-menu">Applications</span></li>
-                        <li class="sidebar-item"> <a class="sidebar-link" href="orders.php"
-                                aria-expanded="false"><i class="far fa-sticky-note"></i>Orders
-                                </span></a>
-                        </li>
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="orders.php"
+                                aria-expanded="false"><i class="far fa-sticky-note"></i><span
+                                    class="hide-menu">Orders</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
                                 aria-expanded="false"><i class="far fa-square"></i><span
@@ -206,15 +205,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning Admin!</h3>
-                        <div class="d-flex align-items-center">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb m-0 p-0">
-                                    <li class="breadcrumb-item"><a href="index.html">Home</a>
-                                    </li>
-                                </ol>
-                            </nav>
-                        </div>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Home</h3>
                     </div>
                 </div>
             </div>

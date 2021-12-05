@@ -10,6 +10,6 @@ $usernameLocal = "root";
 $passwordLocal = "";
 $dbNameLocal = "qr-demo";
 
-//$conn = mysqli_connect($serverName, $username, $password, $dbName);
-$conn = mysqli_connect($serverNameLocal, $usernameLocal, $passwordLocal, $dbNameLocal);
+$conn = mysqli_connect($serverName, $username, $password, $dbName);
+//$conn = mysqli_connect($serverNameLocal, $usernameLocal, $passwordLocal, $dbNameLocal);
 ?>
