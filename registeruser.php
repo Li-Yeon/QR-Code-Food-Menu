@@ -1,3 +1,9 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/db.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/table.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/registeruser-code.php';
+
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -133,7 +139,7 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                       <!-- ============================================================== -->
+                        <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
@@ -183,10 +189,10 @@
                                     
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
                                 aria-expanded="false"><i class="fas fa-bars"></i><span
-                                    class="hide-menu">Categories</span></a></li>    
+                                    class="hide-menu">Categories</span></a></li>       
                                     
                                     <li class="sidebar-item"> <a class="sidebar-link sidebar-link"
-                                href="users.php" aria-expanded="false"><i data-feather="lock"
+                                href="registeruser.php" aria-expanded="false"><i data-feather="lock"
                                     class="feather-icon"></i><span class="hide-menu">Users
                                 </span></a>
                         </li>
@@ -200,8 +206,12 @@
                 </nav>
             </div>
         </aside>
-        <!-- Left Bar -->
-
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
         <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
@@ -209,21 +219,62 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Orders</h3>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">POS SYSTEM</h3>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb m-0 p-0">
+                                    <li class="breadcrumb-item">Register User
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <?php
+        if(isset($_SESSION['status']))
+        {
+        ?>
+        <div class="alert alert-success" role="alert" style="margin-top:1%">
+        <?php echo $_SESSION['status']; ?>
+        </div>
+        <?php
+        unset($_SESSION['status']);
+        }
+            ?>
+            </div>
+            <div class="container-fluid">             
+                <div class="card">
+                    <div class="card-body">
+                         <div class="text-input">
+                         <form method="POST" action="./php/registeruser-code.php">
+                                     <div class="form-group">
+                                         <p>Name<p>
+                                         <input type="text" class="form-control" style="border-radius: 10px;" name="name" required>
+                                         <p>Username<p>
+                                         <input type="text" class="form-control" style="border-radius: 10px;" name="username" required>
+                                         <p>Password<p>
+                                         <input type="password" class="form-control" style="border-radius: 10px;" name="password" required>                       
+                                     </div>
+                                     <hr>
+                                     <input class="btn waves-effect waves-light btn-outline-success" type="submit" name="submit" value="Register User">
+                                     <button type="reset" class="btn waves-effect waves-light btn-outline-danger">Reset</button>
+ 
+                         </form>
+                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">             
-                
-            </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
-
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
             <footer class="footer text-center text-muted">
-                System Developed by <a
-                    href="#">NabaluTech</a>.
+                All Rights Reserved by <a
+                    href="https://adminmart.com/">Adminmart</a>. Designed and Developed by <a
+                    href="https://wrappixel.com">WrapPixel</a>. System Made by <a
+                    href="https://shopee.com.my/liyeontech">LiyeonTech</a>.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -233,7 +284,6 @@
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
-    
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -263,3 +313,16 @@
 </body>
 
 </html>
+
+<script>
+    function confirmLogOut() {
+            var answer = window.confirm("Confirm log out?");
+            if (answer) {
+                window.location = "./PHP/logout.php";
+            }
+            else
+            {
+
+            }
+        }
+</script>

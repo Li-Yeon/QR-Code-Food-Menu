@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/table.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/user.php';
+
+if(isset($_SESSION['currentUser']))
+    {
+
+    }
+    else
+    {
+        echo '<script>alert("You must login first!");</script>';
+        echo '<script>location.href="index.php";</script>';
+        exit();
+    }  
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -133,7 +150,7 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                       <!-- ============================================================== -->
+                        <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
@@ -183,7 +200,7 @@
                                     
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
                                 aria-expanded="false"><i class="fas fa-bars"></i><span
-                                    class="hide-menu">Categories</span></a></li>    
+                                    class="hide-menu">Categories</span></a></li>       
                                     
                                     <li class="sidebar-item"> <a class="sidebar-link sidebar-link"
                                 href="users.php" aria-expanded="false"><i data-feather="lock"
@@ -200,8 +217,12 @@
                 </nav>
             </div>
         </aside>
-        <!-- Left Bar -->
-
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
         <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
@@ -209,21 +230,63 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Orders</h3>
-                    </div>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">POS SYSTEM</h3>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb m-0 p-0">
+                                    <li class="breadcrumb-item">Users
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>                  
                 </div>
+                <a href="registeruser.php"><button type="button" class="btn waves-effect waves-light btn-outline-success" style="margin-top:1%">+ Add User</button></a>
+
             </div>
-            <!-- Container fluid  -->
-            <!-- ============================================================== -->
-            <div class="container-fluid">             
-                
+     
+            <div class="container-fluid">
+                <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Name</th>
+                                                <th>Username</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        while($rows=mysqli_fetch_assoc($userTable))
+                                    {
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $rows['No'];?></td>
+                                            <td><?php echo $rows['Name'];?></td>
+                                            <td><?php echo $rows['Username'];?></td>         
+                                            <td class ="tableAction">
+                                            <a href="users.php?deleteuser=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete user?');"><button type="button" class="btn btn-outline-danger actionBtn"><i class="far fa-trash-alt iconEdit"></i></button></a>
+                                            </td>
+                            </tr>
+                            <?php
+                        }
+                    ?>                              
+                                        </tbody>
+                </table>
+                </div>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
-
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
             <footer class="footer text-center text-muted">
-                System Developed by <a
-                    href="#">NabaluTech</a>.
+                All Rights Reserved by <a
+                    href="https://adminmart.com/">Adminmart</a>. Designed and Developed by <a
+                    href="https://wrappixel.com">WrapPixel</a>. System Made by <a
+                    href="https://shopee.com.my/liyeontech">LiyeonTech</a>.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -233,7 +296,6 @@
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
-    
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -260,6 +322,28 @@
     <script src="assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
     <script src="dist/js/pages/dashboards/dashboard1.min.js"></script>
+    <!--This page plugins -->
+    <script src="assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./CDN/DataTables/datatables.min.css"/>
+    <script src="dist/js/pages/datatable/datatable-basic.init.js"></script>
+    
 </body>
-
+<script>
+    $(document).ready( function () {
+    $('.table').DataTable();
+} );
+</script>
 </html>
+
+<script>
+    function confirmLogOut() {
+            var answer = window.confirm("Confirm log out?");
+            if (answer) {
+                window.location = "./PHP/logout.php";
+            }
+            else
+            {
+
+            }
+        }
+</script>
