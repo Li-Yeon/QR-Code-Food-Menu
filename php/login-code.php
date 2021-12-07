@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/db.php';
+require_once "../db.php";
 
 if(isset($_POST['Login'])) 
   {

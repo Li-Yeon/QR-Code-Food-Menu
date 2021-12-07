@@ -1,5 +1,5 @@
 <?php
-    require_once './db.php';
+require_once "db.php";
 
     // Category Query
     $categoryQuery = "SELECT * FROM category ORDER BY NO ASC";

@@ -1,5 +1,16 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/db.php';
+require_once "../db.php";
+
+if(isset($_SESSION['Admin']))
+    {
+
+    }
+    else
+    {
+        echo '<script>alert("You must login first!");</script>';
+        echo '<script>location.href="../admin/login.php";</script>';
+        exit();
+    }  
 
 $currentUser = $_SESSION['currentUser'];
 $getCurrentUserQuery = "SELECT Name from users WHERE Username=" . "'" . $currentUser . "'";
