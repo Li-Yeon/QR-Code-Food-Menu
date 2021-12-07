@@ -133,7 +133,7 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                        <!-- ============================================================== -->
+                       <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
@@ -176,7 +176,7 @@
                                 aria-expanded="false"><i class="far fa-square"></i><span
                                     class="hide-menu">Tables</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="foods.php"
                                 aria-expanded="false"><i class="fas fa-utensils"></i><span
                                     class="hide-menu">Foods</span></a></li>    
 
@@ -203,14 +203,34 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Home</h3>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Add Food</h3>
+                        <button type="button" class="btn btn-danger mt-3">Back</button>
                     </div>
                 </div>
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">             
-                
+                <form action="">
+                    <!-- Food Name-->
+                    <div class="mb-3">
+                        <label class="form-label">Food Name</label>
+                        <input type="text" class="form-control" style="width:50%">
+                    </div>
+                    <!-- Food Price-->
+                    <label class="form-label">Food Price</label>
+                    <div class="input-group mb-3">                       
+                        <span class="input-group-text">RM</span>
+                        <input type="text" class="form-control" style="max-width:46.7%">
+                    </div>
+                    <!-- Food Category-->
+                    <div class="mb-3">
+                    <label class="form-label">Food Category</label>
+                    <select class="form-control" required style="max-width: 50%">
+                        <option selected hidden value ="">Select Category</option>
+                    </select>
+                    </div>
+                </form>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->

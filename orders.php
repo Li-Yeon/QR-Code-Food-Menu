@@ -133,16 +133,14 @@
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                        <!-- ============================================================== -->
+                       <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle"
-                                    width="40">
                                 <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
-                                        class="text-dark">Jason Doe</span> <i data-feather="chevron-down"
+                                        class="text-dark">Admin</span> <i data-feather="chevron-down"
                                         class="svg-icon"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
@@ -178,7 +176,7 @@
                                 aria-expanded="false"><i class="far fa-square"></i><span
                                     class="hide-menu">Tables</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="foods.php"
                                 aria-expanded="false"><i class="fas fa-utensils"></i><span
                                     class="hide-menu">Foods</span></a></li>    
 
