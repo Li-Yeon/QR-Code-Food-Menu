@@ -1,9 +1,3 @@
-<?php
-require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/db.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/table.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/registeruser-code.php';
-
-?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -54,7 +48,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/registeruser-code.php';
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
                         <!-- Logo icon -->
-                        <a href="index.html">
+                        <a href="admin.php">
                             <b class="logo-icon">
                                 <!-- Dark Logo icon -->
                                 <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" style="width: 50px; height:50px;"/>
@@ -139,7 +133,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/registeruser-code.php';
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                        <!-- ============================================================== -->
+                       <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
@@ -189,13 +183,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/registeruser-code.php';
                                     
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
                                 aria-expanded="false"><i class="fas fa-bars"></i><span
-                                    class="hide-menu">Categories</span></a></li>       
-                                    
-                                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link"
-                                href="registeruser.php" aria-expanded="false"><i data-feather="lock"
-                                    class="feather-icon"></i><span class="hide-menu">Users
-                                </span></a>
-                        </li>
+                                    class="hide-menu">Categories</span></a></li>                                         
 
                         <!-- Log out -->            
                         <li class="list-divider"></li>
@@ -206,12 +194,8 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/registeruser-code.php';
                 </nav>
             </div>
         </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
+        <!-- Left Bar -->
+
         <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
@@ -219,62 +203,40 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/registeruser-code.php';
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">POS SYSTEM</h3>
-                        <div class="d-flex align-items-center">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb m-0 p-0">
-                                    <li class="breadcrumb-item">Register User
-                                    </li>
-                                </ol>
-                            </nav>
-                        </div>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Add User</h3>
+                        <button type="button" class="btn btn-danger mt-3" onclick="history.back()"><i class="fas fa-arrow-circle-left"></i> Back</button>
                     </div>
                 </div>
-                <?php
-        if(isset($_SESSION['status']))
-        {
-        ?>
-        <div class="alert alert-success" role="alert" style="margin-top:1%">
-        <?php echo $_SESSION['status']; ?>
-        </div>
-        <?php
-        unset($_SESSION['status']);
-        }
-            ?>
             </div>
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
             <div class="container-fluid">             
-                <div class="card">
-                    <div class="card-body">
-                         <div class="text-input">
-                         <form method="POST" action="./php/registeruser-code.php">
-                                     <div class="form-group">
-                                         <p>Name<p>
-                                         <input type="text" class="form-control" style="border-radius: 10px;" name="name" required>
-                                         <p>Username<p>
-                                         <input type="text" class="form-control" style="border-radius: 10px;" name="username" required>
-                                         <p>Password<p>
-                                         <input type="password" class="form-control" style="border-radius: 10px;" name="password" required>                       
-                                     </div>
-                                     <hr>
-                                     <input class="btn waves-effect waves-light btn-outline-success" type="submit" name="submit" value="Register User">
-                                     <button type="reset" class="btn waves-effect waves-light btn-outline-danger">Reset</button>
- 
-                         </form>
-                         </div>
+                <form action="">
+                    <!-- Food Name-->
+                    <div class="mb-4">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" style="width:50%">
                     </div>
-                </div>
+                    <!-- Food Price-->
+                    <div class="mb-4">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" style="width:50%">
+                    </div>
+                    <!-- Food Price-->
+                    <div class="mb-4">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" style="width:50%">
+                    </div>
+
+                    <button type="button" class="btn btn-success mt-3">Add User <i class="far fa-plus-square"></i></button>
+                </form>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
+
             <footer class="footer text-center text-muted">
-                All Rights Reserved by <a
-                    href="https://adminmart.com/">Adminmart</a>. Designed and Developed by <a
-                    href="https://wrappixel.com">WrapPixel</a>. System Made by <a
-                    href="https://shopee.com.my/liyeontech">LiyeonTech</a>.
+                System Developed by <a
+                    href="#">NabaluTech</a>.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -284,6 +246,7 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/registeruser-code.php';
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
+    
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -313,16 +276,3 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/registeruser-code.php';
 </body>
 
 </html>
-
-<script>
-    function confirmLogOut() {
-            var answer = window.confirm("Confirm log out?");
-            if (answer) {
-                window.location = "./PHP/logout.php";
-            }
-            else
-            {
-
-            }
-        }
-</script>

@@ -1,20 +1,8 @@
 <?php
-session_start();
-
-require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/table.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/php/user.php';
-
-if(isset($_SESSION['currentUser']))
-    {
-
-    }
-    else
-    {
-        echo '<script>alert("You must login first!");</script>';
-        echo '<script>location.href="index.php";</script>';
-        exit();
-    }  
+require_once "db.php";
+require_once "php/table.php";
 ?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -65,7 +53,7 @@ if(isset($_SESSION['currentUser']))
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
                         <!-- Logo icon -->
-                        <a href="index.html">
+                        <a href="admin.php">
                             <b class="logo-icon">
                                 <!-- Dark Logo icon -->
                                 <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" style="width: 50px; height:50px;"/>
@@ -150,7 +138,7 @@ if(isset($_SESSION['currentUser']))
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                        <!-- ============================================================== -->
+                       <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
@@ -200,7 +188,7 @@ if(isset($_SESSION['currentUser']))
                                     
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
                                 aria-expanded="false"><i class="fas fa-bars"></i><span
-                                    class="hide-menu">Categories</span></a></li>       
+                                    class="hide-menu">Categories</span></a></li>            
                                     
                                     <li class="sidebar-item"> <a class="sidebar-link sidebar-link"
                                 href="users.php" aria-expanded="false"><i data-feather="lock"
@@ -217,12 +205,8 @@ if(isset($_SESSION['currentUser']))
                 </nav>
             </div>
         </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Page wrapper  -->
-        <!-- ============================================================== -->
+        <!-- Left Bar -->
+
         <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
@@ -230,30 +214,23 @@ if(isset($_SESSION['currentUser']))
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">POS SYSTEM</h3>
-                        <div class="d-flex align-items-center">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb m-0 p-0">
-                                    <li class="breadcrumb-item">Users
-                                    </li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>                  
-                </div>
-                <a href="registeruser.php"><button type="button" class="btn waves-effect waves-light btn-outline-success" style="margin-top:1%">+ Add User</button></a>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Users</h3>
+                        <a href="registeruser.php"><button type="button" class="btn btn-success mt-3">Add Users <i class="far fa-plus-square"></i></button></a>
 
+                    </div>
+                </div>
             </div>
-     
-            <div class="container-fluid">
-                <div class="table-responsive">
-                <table class="table table-striped table-bordered">
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">             
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
-                                                <th>Name</th>
-                                                <th>Username</th>
-                                                <th>Action</th>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Username</th>
+                                            <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -262,11 +239,12 @@ if(isset($_SESSION['currentUser']))
                                     {
                                         ?>
                                         <tr>
-                                            <td><?php echo $rows['No'];?></td>
-                                            <td><?php echo $rows['Name'];?></td>
-                                            <td><?php echo $rows['Username'];?></td>         
+                                        <td><?php echo $rows['No'];?></td>
+                                        <td><?php echo $rows['Name'];?></td>
+                                        <td><?php echo $rows['Username'];?></td>
                                             <td class ="tableAction">
-                                            <a href="users.php?deleteuser=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete user?');"><button type="button" class="btn btn-outline-danger actionBtn"><i class="far fa-trash-alt iconEdit"></i></button></a>
+                                        <a href="editcategory.php?edit=<?php echo $rows['No'];?>"><button type="button" class="btn btn-outline-success"><i class="far fa-edit iconEdit"></i></button></a>
+                                        <a href="category.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete food?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
                                             </td>
                             </tr>
                             <?php
@@ -278,15 +256,10 @@ if(isset($_SESSION['currentUser']))
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- footer -->
-            <!-- ============================================================== -->
+
             <footer class="footer text-center text-muted">
-                All Rights Reserved by <a
-                    href="https://adminmart.com/">Adminmart</a>. Designed and Developed by <a
-                    href="https://wrappixel.com">WrapPixel</a>. System Made by <a
-                    href="https://shopee.com.my/liyeontech">LiyeonTech</a>.
+                System Developed by <a
+                    href="#">NabaluTech</a>.
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -296,6 +269,7 @@ if(isset($_SESSION['currentUser']))
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
     </div>
+    
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -322,28 +296,12 @@ if(isset($_SESSION['currentUser']))
     <script src="assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
     <script src="dist/js/pages/dashboards/dashboard1.min.js"></script>
-    <!--This page plugins -->
-    <script src="assets/extra-libs/datatables.net/js/jquery.dataTables.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./CDN/DataTables/datatables.min.css"/>
-    <script src="dist/js/pages/datatable/datatable-basic.init.js"></script>
-    
 </body>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready( function () {
     $('.table').DataTable();
 } );
 </script>
 </html>
-
-<script>
-    function confirmLogOut() {
-            var answer = window.confirm("Confirm log out?");
-            if (answer) {
-                window.location = "./PHP/logout.php";
-            }
-            else
-            {
-
-            }
-        }
-</script>
