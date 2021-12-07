@@ -183,7 +183,7 @@
                                     
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
                                 aria-expanded="false"><i class="fas fa-bars"></i><span
-                                    class="hide-menu">Categories</span></a></li>    
+                                    class="hide-menu">Categories</span></a></li> 
                                     
                                     <li class="sidebar-item"> <a class="sidebar-link sidebar-link"
                                 href="users.php" aria-expanded="false"><i data-feather="lock"
