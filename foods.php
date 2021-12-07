@@ -209,7 +209,8 @@ require_once "php/table.php";
                 <div class="row">
                     <div class="col-7 align-self-center">
                         <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Foods</h3>
-                        <button type="button" class="btn btn-success mt-3">Add Food +</button>
+                        <a href="addfood.php"><button type="button" class="btn btn-success mt-3">Add Food <i class="far fa-plus-square"></i></button></a>
+
                     </div>
                 </div>
             </div>

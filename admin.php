@@ -176,7 +176,7 @@
                                 aria-expanded="false"><i class="far fa-square"></i><span
                                     class="hide-menu">Tables</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="foods.php"
                                 aria-expanded="false"><i class="fas fa-utensils"></i><span
                                     class="hide-menu">Foods</span></a></li>    
 
