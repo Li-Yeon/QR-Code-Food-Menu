@@ -1,3 +1,7 @@
+<?php
+
+
+?>
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -217,24 +221,24 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">             
-                <form action="">
+                <form method="POST" action="./php/registeruser-code.php">
                     <!-- Food Name-->
                     <div class="mb-4">
                         <label class="form-label">Name</label>
-                        <input type="text" class="form-control" style="width:50%">
+                        <input type="text" class="form-control" name="name" style="width:50%">
                     </div>
                     <!-- Food Price-->
                     <div class="mb-4">
                         <label class="form-label">Username</label>
-                        <input type="text" class="form-control" style="width:50%">
+                        <input type="text" class="form-control" name="username" style="width:50%">
                     </div>
                     <!-- Food Price-->
                     <div class="mb-4">
                         <label class="form-label">Password</label>
-                        <input type="password" class="form-control" style="width:50%">
+                        <input type="password" class="form-control" name="password" style="width:50%">
                     </div>
 
-                    <button type="button" class="btn btn-success mt-3">Add User <i class="far fa-plus-square"></i></button>
+                    <input type="submit" class="btn btn-success mt-3" name="adduser" value="Add User">
                 </form>
             </div>
             <!-- ============================================================== -->

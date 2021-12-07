@@ -2,19 +2,19 @@
 session_start();
 require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/db.php';
 
-if (isset($_POST["submit"])) {
+if (isset($_POST["adduser"])) {
     $name = $_POST["name"];
     $username = $_POST["username"];
     $pwd = $_POST["password"];
 
     if (invalidUid($username) !== false){
         echo '<script>alert("Invalid username!")</script>';
-        echo '<script>location.href="registeruser.php?error=invaliduid"</script>';
+        echo '<script>location.href="../registeruser.php?error=invaliduid"</script>';
         exit();
     }
     if (uidExists($conn, $username) !== false){
         echo '<script>alert("Username taken!")</script>';
-        echo '<script>location.href="registeruser.php?error=usernametaken"</script>';
+        echo '<script>location.href="../registeruser.php?error=usernametaken"</script>';
         exit();
     }
     createuser($conn, $name, $username, $pwd);
@@ -36,7 +36,7 @@ function uidExists($conn, $username){
     $sql = "SELECT * FROM users WHERE Username = ?;"; 
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location:./adduser.php?error=statementfailed");
+        header("location:../registeruser.php?error=statementfailed");
         exit();
     }
     
@@ -58,7 +58,7 @@ function createuser($conn, $name, $username, $pwd){
     $sql = "INSERT INTO users (Name, Username, Password) values (?, ?, ?);"; 
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location:registeruser.php?error=none");
+        header("location:../registeruser.php?error=none");
         exit();
     }
 

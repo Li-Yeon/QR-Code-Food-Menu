@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'].'/trms/includes/dbconnection.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/qr-alpha/db.php';
 
-if(isset($_POST['login'])) 
+if(isset($_POST['Login'])) 
   {
     $username=$_POST['username'];
     $password=($_POST['password']);
@@ -12,7 +12,7 @@ if(isset($_POST['login']))
   }
   else
   {
-    header("location:../index.php");
+    header("location:../admin.php");
     exit();
   }
 
@@ -21,7 +21,7 @@ function loginUser($conn, $username, $password)
     $uidExists = uidExists($conn, $username);
 
     if($uidExists === false){
-        header("location:../index.php?error=wronglogin");
+        header("location:../admin/login.php?error=wronglogin");
         exit();
     }
     
@@ -29,20 +29,20 @@ function loginUser($conn, $username, $password)
     $checkPassword = password_verify($password , $passwordHashed);
 
     if($checkPassword === false){
-        header("location:../index.php?error=wronglogin");
+        header("location:../admin/login.php?error=wronglogin");
         exit();
     }
     else if($checkPassword === true){
             session_start();            
-            header("location:../dashboard.php");
+            header("location:../admin.php");
     }
 }
 
 function uidExists($conn, $username){
-    $sql = "SELECT * FROM tbladmin WHERE UserName = ?;"; 
+    $sql = "SELECT * FROM users WHERE Username = ?;"; 
     $stmt = mysqli_stmt_init($conn);
     if(!mysqli_stmt_prepare($stmt, $sql)){
-        header("location:../index.php?error=statementfailed");
+        header("location:../admin/login.php?error=statementfailed");
         exit();
     }
     
