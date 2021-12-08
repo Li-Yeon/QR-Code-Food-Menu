@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once "db.php";
 require_once "php/table.php";
+require_once "php/food-code.php";
 if(isset($_SESSION['Admin']))
     {
 
@@ -233,33 +233,36 @@ if(isset($_SESSION['Admin']))
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">             
-                <form action="">
+                <form method="POST">
                     <!-- Food Name-->
                     <div class="mb-4">
                         <label class="form-label">Food Name</label>
-                        <input type="text" class="form-control" style="width:50%">
+                        <input type="text" class="form-control" style="width:50%" name="foodname">
                     </div>
                     <!-- Food Price-->
                     <label class="form-label">Food Price</label>
                     <div class="input-group mb-4">                       
                         <span class="input-group-text">RM</span>
-                        <input type="text" class="form-control" style="max-width:46.7%">
+                        <input type="text" class="form-control" style="max-width:46.7%" name="foodprice">
                     </div>
                     <!-- Food Category-->
                     <div class="mb-4">
                     <label class="form-label">Food Category</label>
-                    <select class="form-control" required style="max-width: 50%">
-                        <option selected hidden value ="">Select Category</option>
+                    <select class="form-control" required style="max-width: 50%" name = "category">
+                    <?php while($row = mysqli_fetch_array($catResult)):;?>
+                            <option selected hidden value ="">Select Category</option>
+                            <option value="<?php echo $row[1];?>"><?php echo $row[1];?></option>
+                    <?php endwhile;?>
                     </select>
                     </div>
 
                     <!-- Food Image-->
                     <div class="mb-4">
                         <label class="form-label">Food Image</label>
-                        <input type="file" class="form-control" style="max-width: 50%">
+                        <input type="file" name="image" class="form-control-file" required>
                     </div>
 
-                    <button type="button" class="btn btn-success mt-3">Add Food <i class="far fa-plus-square"></i></button>
+                    <button type="submit" class="btn btn-success mt-3" name="addFood">Add Food <i class="far fa-plus-square"></i></button>
                 </form>
             </div>
             <!-- ============================================================== -->

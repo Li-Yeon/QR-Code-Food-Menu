@@ -1,24 +1,13 @@
 <?php
-session_start();
 require_once "db.php";
 require_once "php/table.php";
-if(isset($_SESSION['Admin']))
-    {
-
-    }
-    else
-    {
-        echo '<script>alert("You must login first!");</script>';
-        echo '<script>location.href="./admin/login.php";</script>';
-        exit();
-    }  
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title> Shopping Cart</title>
-    <link rel="stylesheet" type="text/css" href="cart.css">
+    <link rel="stylesheet" href="cart.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.cssS">
 </head>
 <body>
