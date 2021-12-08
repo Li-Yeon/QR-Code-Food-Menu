@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once "db.php";
 require_once "php/table.php";
 require_once "php/food-code.php";
 if(isset($_SESSION['Admin']))
@@ -226,49 +225,52 @@ if(isset($_SESSION['Admin']))
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Foods</h3>
-                        <a href="addfood.php"><button type="button" class="btn btn-success mt-3">Add Food <i class="far fa-plus-square"></i></button></a>
-
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Update Food</h3>
+                        <a href="foods.php"><button type="button" class="btn btn-danger mt-3"><i class="fas fa-arrow-circle-left"></i> Back</button></a>
                     </div>
                 </div>
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">             
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                            <th>#</th>
-                                            <th>Food Name</th>
-                                            <th>Food Price</th>
-                                            <th>Category</th>
-                                            <th>Food Image</th>
-                                            <th>Action</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-                                        while($rows=mysqli_fetch_assoc($fdQuery))
-                                    {
-                                        ?>
-                                        <tr>
-                                        <td><?php echo $rows['No'];?></td>
-                                        <td><?php echo $rows['food_Name'];?></td>
-                                        <td><?php echo $rows['food_Price'];?></td>
-                                        <td><?php echo $rows['food_Category'];?></td>
-                                        <td><img src="<?php echo $rows['Image'];?>" alt="" style="width: 150px; height:100px"></td>
-                                            <td class ="tableAction">
-                                        <a href="editfood.php?edit=<?php echo $rows['No'];?>"><button type="button" class="btn btn-outline-success"><i class="far fa-edit iconEdit"></i></button></a>
-                                        <a href="foods.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete food?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
-                                            </td>
-                            </tr>
-                            <?php
-                        }
-                    ?>                              
-                                        </tbody>
-                </table>
-                </div>
+                <form method="POST" enctype="multipart/form-data">
+                        <?php
+                        while($rows=mysqli_fetch_assoc($getData))
+                        { 
+                        ?>
+                    <!-- Food Name-->
+                    <div class="mb-4">
+                        <label class="form-label">Food Name</label>
+                        <input type="text" class="form-control" style="width:50%" name="foodname" value="<?php echo $rows['food_Name'];?>">
+                    </div>
+                    <!-- Food Price-->
+                    <label class="form-label">Food Price</label>
+                    <div class="input-group mb-4">                       
+                        <span class="input-group-text">RM</span>
+                        <input type="text" class="form-control" style="max-width:46.7%" name="foodprice" value="<?php echo $rows['food_Price'];?>">
+                    </div>
+                    <!-- Food Category-->
+                    <div class="mb-4">
+                    <label class="form-label">Food Category</label>
+                    <select class="form-control" required style="max-width: 50%" name = "category">
+                    <?php while($row = mysqli_fetch_array($catResult)):;?>
+                            <option selected hidden><?php echo $rows['food_Category'];?></option>
+                            <option value="<?php echo $row[1];?>"><?php echo $row[1];?></option>
+                    <?php endwhile;?>
+                    </select>
+                    </div>
+
+                    <!-- Food Image-->
+                    <div class="mb-4">
+                        <label class="form-label">Food Image</label>
+                        <input type="file" name="image" class="form-control-file">
+                    </div>
+
+                    <button type="submit" class="btn btn-success mt-3" name="editFood">Update Food <i class="far fa-plus-square"></i></button>
+                    <?php
+                }
+                ?>
+                </form>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -313,11 +315,5 @@ if(isset($_SESSION['Admin']))
     <script src="assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
     <script src="dist/js/pages/dashboards/dashboard1.min.js"></script>
 </body>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready( function () {
-    $('.table').DataTable();
-} );
-</script>
+
 </html>

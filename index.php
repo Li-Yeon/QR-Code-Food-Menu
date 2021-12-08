@@ -77,7 +77,7 @@ while($rows=mysqli_fetch_assoc($ctQuery))
     ?>
         <div class="col-sm d-flex justify-content-center pb-3">
             <div class="card" style="width: 18rem;">
-                <img src="<?php echo $rows['food_Image'];?>" class="card-img-top" alt="">
+                <img src="<?php echo $rows['Image'];?>" class="card-img-top" alt="" style="height: 150px;object-fit: contain;" >
                 <div class="card-body">
                 <h5 class="card-title"><?php echo $rows['food_Name'];?></h5>
                 <p class="card-text">RM<?php echo $rows['food_Price'];?></p>

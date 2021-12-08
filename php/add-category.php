@@ -5,6 +5,9 @@ require_once "db.php";
 $sql = "SELECT * FROM category ORDER BY No ASC";
 $result = mysqli_query($conn, $sql) or die (mysqli_error($conn));
 
+//Get previous Category
+$prevCat = "";
+
 //Add Category
 if(isset($_POST['addCategory']))
 {
@@ -23,19 +26,25 @@ if (isset($_GET['delete'])){
     echo '<script>location.href="./category.php"</script>';
 }  
 
+// Auto Fill Edit
 if (isset($_GET['edit'])){
     $idP = $_GET['edit'];
     $query = "SELECT * FROM category WHERE No = '$idP'";
+
     $getData = mysqli_query($conn, $query);
+
+    $queryPrevCatSqli = mysqli_query($conn, $query);
+    $prevCat = mysqli_fetch_assoc($queryPrevCatSqli);
+    $prevCat = $prevCat['Category'];
+    $prevCat = preg_replace('/\s+/', '', $prevCat);
 }  
 
-
+// Edit Category
 if(isset($_POST['editCategory']))
 {
     $category=$_POST['category'];
-    $update = "UPDATE category SET Category = '$category' WHERE No = '$idP'";
-
-    $result = mysqli_query($conn, $update) or die (mysqli_error($conn)); 
+    $update = "UPDATE category SET Category = '$category' WHERE No = '$idP'; UPDATE food SET food_Category = '$category' WHERE food_Category = '$prevCat'";
+    $result = mysqli_multi_query($conn, $update); 
     echo '<script>location.href="./category.php"</script>';
 }
 
