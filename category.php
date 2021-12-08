@@ -2,6 +2,7 @@
 session_start();
 require_once "db.php";
 require_once "php/table.php";
+require_once "php/add-category.php";
 if(isset($_SESSION['Admin']))
     {
 
@@ -225,8 +226,8 @@ if(isset($_SESSION['Admin']))
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Foods</h3>
-                        <a href="addfood.php"><button type="button" class="btn btn-success mt-3">Add Food <i class="far fa-plus-square"></i></button></a>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Category</h3>
+                        <a href="addcategory.php"><button type="button" class="btn btn-success mt-3">Add Category <i class="far fa-plus-square"></i></button></a>
 
                     </div>
                 </div>
@@ -239,27 +240,21 @@ if(isset($_SESSION['Admin']))
                                         <thead>
                                             <tr>
                                             <th>#</th>
-                                            <th>Food Name</th>
-                                            <th>Food Price</th>
                                             <th>Category</th>
-                                            <th>Food Image</th>
                                             <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <?php
-                                        while($rows=mysqli_fetch_assoc($fdQuery))
+                                        while($rows=mysqli_fetch_assoc($ctQuery))
                                     {
                                         ?>
                                         <tr>
                                         <td><?php echo $rows['No'];?></td>
-                                        <td><?php echo $rows['food_Name'];?></td>
-                                        <td><?php echo $rows['food_Price'];?></td>
-                                        <td><?php echo $rows['food_Category'];?></td>
-                                        <td><img src="<?php echo $rows['food_Image'];?>" alt="" style="width: 150px; height:100px"></td>
+                                        <td><?php echo $rows['Category'];?></td>
                                             <td class ="tableAction">
                                         <a href="editcategory.php?edit=<?php echo $rows['No'];?>"><button type="button" class="btn btn-outline-success"><i class="far fa-edit iconEdit"></i></button></a>
-                                        <a href="category.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete food?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+                                        <a href="category.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete category?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
                                             </td>
                             </tr>
                             <?php

@@ -2,16 +2,6 @@
 session_start();
 require_once "db.php";
 require_once "php/table.php";
-if(isset($_SESSION['Admin']))
-    {
-
-    }
-    else
-    {
-        echo '<script>alert("You must login first!");</script>';
-        echo '<script>location.href="./admin/login.php";</script>';
-        exit();
-    }  
 ?>
 
 <!DOCTYPE html>  

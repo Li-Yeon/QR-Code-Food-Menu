@@ -188,7 +188,7 @@ if(isset($_SESSION['Admin']))
                                 aria-expanded="false"><i class="far fa-sticky-note"></i><span
                                     class="hide-menu">Orders</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="tables.php"
                                 aria-expanded="false"><i class="far fa-square"></i><span
                                     class="hide-menu">Tables</span></a></li>
 
@@ -197,7 +197,7 @@ if(isset($_SESSION['Admin']))
                                     class="hide-menu">Foods</span></a></li>    
 
                                     
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="category.php"
                                 aria-expanded="false"><i class="fas fa-bars"></i><span
                                     class="hide-menu">Categories</span></a></li> 
                                     

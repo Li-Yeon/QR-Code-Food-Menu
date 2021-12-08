@@ -187,7 +187,7 @@ if(isset($_SESSION['Admin']))
                                 aria-expanded="false"><i class="far fa-sticky-note"></i><span
                                     class="hide-menu">Orders</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="tables.php"
                                 aria-expanded="false"><i class="far fa-square"></i><span
                                     class="hide-menu">Tables</span></a></li>
 
@@ -196,7 +196,7 @@ if(isset($_SESSION['Admin']))
                                     class="hide-menu">Foods</span></a></li>    
 
                                     
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="category.php"
                                 aria-expanded="false"><i class="fas fa-bars"></i><span
                                     class="hide-menu">Categories</span></a></li> 
                                     
@@ -225,7 +225,8 @@ if(isset($_SESSION['Admin']))
                 <div class="row">
                     <div class="col-7 align-self-center">
                         <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Add User</h3>
-                        <button type="button" class="btn btn-danger mt-3" onclick="history.back()"><i class="fas fa-arrow-circle-left"></i> Back</button>
+                        <a href="users.php"><button type="button" class="btn btn-danger mt-3"><i class="fas fa-arrow-circle-left"></i> Back</button></a>
+                        
                     </div>
                 </div>
             </div>
