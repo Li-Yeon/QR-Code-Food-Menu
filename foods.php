@@ -225,14 +225,49 @@ if(isset($_SESSION['Admin']))
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Orders</h3>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Foods</h3>
+                        <a href="addfood.php"><button type="button" class="btn btn-success mt-3">Add Food <i class="far fa-plus-square"></i></button></a>
+
                     </div>
                 </div>
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">             
-                
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                            <th>#</th>
+                                            <th>Food Name</th>
+                                            <th>Food Price</th>
+                                            <th>Category</th>
+                                            <th>Food Image</th>
+                                            <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        while($rows=mysqli_fetch_assoc($fdQuery))
+                                    {
+                                        ?>
+                                        <tr>
+                                        <td><?php echo $rows['No'];?></td>
+                                        <td><?php echo $rows['food_Name'];?></td>
+                                        <td><?php echo $rows['food_Price'];?></td>
+                                        <td><?php echo $rows['food_Category'];?></td>
+                                        <td><img src="<?php echo $rows['food_Image'];?>" alt="" style="width: 150px; height:100px"></td>
+                                            <td class ="tableAction">
+                                        <a href="editcategory.php?edit=<?php echo $rows['No'];?>"><button type="button" class="btn btn-outline-success"><i class="far fa-edit iconEdit"></i></button></a>
+                                        <a href="category.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete food?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+                                            </td>
+                            </tr>
+                            <?php
+                        }
+                    ?>                              
+                                        </tbody>
+                </table>
+                </div>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -277,5 +312,11 @@ if(isset($_SESSION['Admin']))
     <script src="assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
     <script src="dist/js/pages/dashboards/dashboard1.min.js"></script>
 </body>
-
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready( function () {
+    $('.table').DataTable();
+} );
+</script>
 </html>

@@ -1,3 +1,19 @@
+<?php
+session_start();
+require_once "db.php";
+require_once "php/table.php";
+if(isset($_SESSION['Admin']))
+    {
+
+    }
+    else
+    {
+        echo '<script>alert("You must login first!");</script>';
+        echo '<script>location.href="./admin/login.php";</script>';
+        exit();
+    }  
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -48,7 +64,7 @@
                     <!-- ============================================================== -->
                     <div class="navbar-brand">
                         <!-- Logo icon -->
-                        <a href="index.html">
+                        <a href="admin.php">
                             <b class="logo-icon">
                                 <!-- Dark Logo icon -->
                                 <img src="assets/images/logo-icon.png" alt="homepage" class="dark-logo" style="width: 50px; height:50px;"/>
@@ -139,10 +155,8 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
-                                <img src="assets/images/users/profile-pic.jpg" alt="user" class="rounded-circle"
-                                    width="40">
                                 <span class="ml-2 d-none d-lg-inline-block"><span>Hello,</span> <span
-                                        class="text-dark">Jason Doe</span> <i data-feather="chevron-down"
+                                        class="text-dark">Admin</span> <i data-feather="chevron-down"
                                         class="svg-icon"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
@@ -178,14 +192,20 @@
                                 aria-expanded="false"><i class="far fa-square"></i><span
                                     class="hide-menu">Tables</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="foods.php"
                                 aria-expanded="false"><i class="fas fa-utensils"></i><span
                                     class="hide-menu">Foods</span></a></li>    
 
                                     
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"
                                 aria-expanded="false"><i class="fas fa-bars"></i><span
-                                    class="hide-menu">Categories</span></a></li>                                         
+                                    class="hide-menu">Categories</span></a></li> 
+                                    
+                                    <li class="sidebar-item"> <a class="sidebar-link sidebar-link"
+                                href="users.php" aria-expanded="false"><i data-feather="lock"
+                                    class="feather-icon"></i><span class="hide-menu">Users
+                                </span></a>
+                        </li>
 
                         <!-- Log out -->            
                         <li class="list-divider"></li>

@@ -13,7 +13,6 @@ if(isset($_SESSION['Admin']))
         exit();
     }  
 ?>
-
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -225,14 +224,33 @@ if(isset($_SESSION['Admin']))
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Orders</h3>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Add User</h3>
+                        <button type="button" class="btn btn-danger mt-3" onclick="history.back()"><i class="fas fa-arrow-circle-left"></i> Back</button>
                     </div>
                 </div>
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">             
-                
+                <form method="POST" action="./php/registeruser-code.php">
+                    <!-- Food Name-->
+                    <div class="mb-4">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" style="width:50%">
+                    </div>
+                    <!-- Food Price-->
+                    <div class="mb-4">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-control" name="username" style="width:50%">
+                    </div>
+                    <!-- Food Price-->
+                    <div class="mb-4">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" style="width:50%">
+                    </div>
+
+                    <input type="submit" class="btn btn-success mt-3" name="adduser" value="Add User">
+                </form>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->

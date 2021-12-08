@@ -225,14 +225,42 @@ if(isset($_SESSION['Admin']))
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Orders</h3>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Add Food</h3>
+                        <button type="button" class="btn btn-danger mt-3" onclick="history.back()"><i class="fas fa-arrow-circle-left"></i> Back</button>
                     </div>
                 </div>
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">             
-                
+                <form action="">
+                    <!-- Food Name-->
+                    <div class="mb-4">
+                        <label class="form-label">Food Name</label>
+                        <input type="text" class="form-control" style="width:50%">
+                    </div>
+                    <!-- Food Price-->
+                    <label class="form-label">Food Price</label>
+                    <div class="input-group mb-4">                       
+                        <span class="input-group-text">RM</span>
+                        <input type="text" class="form-control" style="max-width:46.7%">
+                    </div>
+                    <!-- Food Category-->
+                    <div class="mb-4">
+                    <label class="form-label">Food Category</label>
+                    <select class="form-control" required style="max-width: 50%">
+                        <option selected hidden value ="">Select Category</option>
+                    </select>
+                    </div>
+
+                    <!-- Food Image-->
+                    <div class="mb-4">
+                        <label class="form-label">Food Image</label>
+                        <input type="file" class="form-control" style="max-width: 50%">
+                    </div>
+
+                    <button type="button" class="btn btn-success mt-3">Add Food <i class="far fa-plus-square"></i></button>
+                </form>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
