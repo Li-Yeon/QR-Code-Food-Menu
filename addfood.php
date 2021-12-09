@@ -209,7 +209,7 @@ if(isset($_SESSION['Admin']))
 
                         <!-- Log out -->            
                         <li class="list-divider"></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"aria-expanded="false">
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="logout.php"aria-expanded="false">
                             <i data-feather="log-out" class="feather-icon"></i>
                             <span class="hide-menu">Logout</span></a></li>
                     </ul>
@@ -226,14 +226,14 @@ if(isset($_SESSION['Admin']))
                 <div class="row">
                     <div class="col-7 align-self-center">
                         <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Add Food</h3>
-                        <button type="button" class="btn btn-danger mt-3" onclick="history.back()"><i class="fas fa-arrow-circle-left"></i> Back</button>
+                        <a href="foods.php"><button type="button" class="btn btn-danger mt-3"><i class="fas fa-arrow-circle-left"></i> Back</button></a>
                     </div>
                 </div>
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">             
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     <!-- Food Name-->
                     <div class="mb-4">
                         <label class="form-label">Food Name</label>

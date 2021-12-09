@@ -209,7 +209,7 @@ if(isset($_SESSION['Admin']))
 
                         <!-- Log out -->            
                         <li class="list-divider"></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"aria-expanded="false">
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="logout.php"aria-expanded="false">
                             <i data-feather="log-out" class="feather-icon"></i>
                             <span class="hide-menu">Logout</span></a></li>
                     </ul>
@@ -254,8 +254,8 @@ if(isset($_SESSION['Admin']))
                                         <td><?php echo $rows['Name'];?></td>
                                         <td><?php echo $rows['Username'];?></td>
                                             <td class ="tableAction">
-                                        <a href="editcategory.php?edit=<?php echo $rows['No'];?>"><button type="button" class="btn btn-outline-success"><i class="far fa-edit iconEdit"></i></button></a>
-                                        <a href="category.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete food?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+                            
+                                        <a href="php/user.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete User?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
                                             </td>
                             </tr>
                             <?php

@@ -2,6 +2,7 @@
 session_start();
 require_once "db.php";
 require_once "php/table.php";
+require_once "php/food-code.php";
 if(isset($_SESSION['Admin']))
     {
 
@@ -209,7 +210,7 @@ if(isset($_SESSION['Admin']))
 
                         <!-- Log out -->            
                         <li class="list-divider"></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="#"aria-expanded="false">
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="logout.php"aria-expanded="false">
                             <i data-feather="log-out" class="feather-icon"></i>
                             <span class="hide-menu">Logout</span></a></li>
                     </ul>
@@ -256,10 +257,10 @@ if(isset($_SESSION['Admin']))
                                         <td><?php echo $rows['food_Name'];?></td>
                                         <td><?php echo $rows['food_Price'];?></td>
                                         <td><?php echo $rows['food_Category'];?></td>
-                                        <td><img src="<?php echo $rows['food_Image'];?>" alt="" style="width: 150px; height:100px"></td>
+                                        <td><img src="<?php echo $rows['Image'];?>" alt="" style="width: 150px; height:100px"></td>
                                             <td class ="tableAction">
-                                        <a href="editcategory.php?edit=<?php echo $rows['No'];?>"><button type="button" class="btn btn-outline-success"><i class="far fa-edit iconEdit"></i></button></a>
-                                        <a href="category.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete food?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+                                        <a href="editfood.php?edit=<?php echo $rows['No'];?>"><button type="button" class="btn btn-outline-success"><i class="far fa-edit iconEdit"></i></button></a>
+                                        <a href="foods.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete food?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
                                             </td>
                             </tr>
                             <?php

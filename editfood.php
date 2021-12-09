@@ -1,8 +1,7 @@
 <?php
 session_start();
-
 require_once "php/table.php";
-require_once "php/add-category.php";
+require_once "php/food-code.php";
 if(isset($_SESSION['Admin']))
     {
 
@@ -210,7 +209,7 @@ if(isset($_SESSION['Admin']))
 
                         <!-- Log out -->            
                         <li class="list-divider"></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="logout.php" aria-expanded="false">
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="logout.php"aria-expanded="false">
                             <i data-feather="log-out" class="feather-icon"></i>
                             <span class="hide-menu">Logout</span></a></li>
                     </ul>
@@ -226,24 +225,52 @@ if(isset($_SESSION['Admin']))
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Add Category</h3>
-                        <a href="category.php"><button type="button" class="btn btn-danger mt-3"><i class="fas fa-arrow-circle-left"></i> Back</button></a>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Update Food</h3>
+                        <a href="foods.php"><button type="button" class="btn btn-danger mt-3"><i class="fas fa-arrow-circle-left"></i> Back</button></a>
                     </div>
                 </div>
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <div class="container-fluid">    
-
-                <form method="POST">
-                    <!-- Category Name-->
+            <div class="container-fluid">             
+                <form method="POST" enctype="multipart/form-data">
+                        <?php
+                        while($rows=mysqli_fetch_assoc($getData))
+                        { 
+                        ?>
+                    <!-- Food Name-->
                     <div class="mb-4">
-                        <label class="form-label">Category</label>
-                        <input type="text" class="form-control" style="width:50%" name="category">
+                        <label class="form-label">Food Name</label>
+                        <input type="text" class="form-control" style="width:50%" name="foodname" value="<?php echo $rows['food_Name'];?>">
                     </div>
-                    <button type="submit" class="btn btn-success mt-3" name="addCategory">Add Category <i class="far fa-plus-square"></i></button>
-                </form>
+                    <!-- Food Price-->
+                    <label class="form-label">Food Price</label>
+                    <div class="input-group mb-4">                       
+                        <span class="input-group-text">RM</span>
+                        <input type="text" class="form-control" style="max-width:46.7%" name="foodprice" value="<?php echo $rows['food_Price'];?>">
+                    </div>
+                    <!-- Food Category-->
+                    <div class="mb-4">
+                    <label class="form-label">Food Category</label>
+                    <select class="form-control" required style="max-width: 50%" name = "category">
+                    <?php while($row = mysqli_fetch_array($catResult)):;?>
+                            <option selected hidden><?php echo $rows['food_Category'];?></option>
+                            <option value="<?php echo $row[1];?>"><?php echo $row[1];?></option>
+                    <?php endwhile;?>
+                    </select>
+                    </div>
 
+                    <!-- Food Image-->
+                    <div class="mb-4">
+                        <label class="form-label">Food Image</label>
+                        <input type="file" name="image" class="form-control-file">
+                    </div>
+
+                    <button type="submit" class="btn btn-success mt-3" name="editFood">Update Food <i class="far fa-plus-square"></i></button>
+                    <?php
+                }
+                ?>
+                </form>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
