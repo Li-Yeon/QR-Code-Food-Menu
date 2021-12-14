@@ -238,6 +238,11 @@ if(isset($_SESSION['Admin']))
                         while($rows=mysqli_fetch_assoc($getData))
                         { 
                         ?>
+                     <!-- Food Code-->
+                    <div class="mb-4">
+                        <label class="form-label">Food Code</label>
+                        <input type="text" class="form-control" style="width:50%" name="foodcode" readonly value="<?php echo $rows['food_Code'];?>">
+                    </div>
                     <!-- Food Name-->
                     <div class="mb-4">
                         <label class="form-label">Food Name</label>

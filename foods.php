@@ -240,6 +240,7 @@ if(isset($_SESSION['Admin']))
                                         <thead>
                                             <tr>
                                             <th>#</th>
+                                            <th>Food Code</th>
                                             <th>Food Name</th>
                                             <th>Food Price</th>
                                             <th>Category</th>
@@ -254,6 +255,7 @@ if(isset($_SESSION['Admin']))
                                         ?>
                                         <tr>
                                         <td><?php echo $rows['No'];?></td>
+                                        <td><?php echo $rows['food_Code'];?></td>
                                         <td><?php echo $rows['food_Name'];?></td>
                                         <td><?php echo $rows['food_Price'];?></td>
                                         <td><?php echo $rows['food_Category'];?></td>

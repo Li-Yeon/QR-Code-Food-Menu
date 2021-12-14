@@ -234,21 +234,26 @@ if(isset($_SESSION['Admin']))
             <!-- ============================================================== -->
             <div class="container-fluid">             
                 <form method="POST" enctype="multipart/form-data">
+                    <!-- Food Code-->
+                    <div class="mb-4">
+                    <label class="form-label">Food Code</label>
+                    <input type="text" class="form-control" style="width:50%" name="foodcode" required>
+                    </div>
                     <!-- Food Name-->
                     <div class="mb-4">
                         <label class="form-label">Food Name</label>
-                        <input type="text" class="form-control" style="width:50%" name="foodname">
+                        <input type="text" class="form-control" style="width:50%" name="foodname" required>
                     </div>
                     <!-- Food Price-->
                     <label class="form-label">Food Price</label>
                     <div class="input-group mb-4">                       
                         <span class="input-group-text">RM</span>
-                        <input type="text" class="form-control" style="max-width:46.7%" name="foodprice">
+                        <input type="text" class="form-control" style="max-width:46.7%" name="foodprice" required>
                     </div>
                     <!-- Food Category-->
                     <div class="mb-4">
                     <label class="form-label">Food Category</label>
-                    <select class="form-control" required style="max-width: 50%" name = "category">
+                    <select class="form-control" required style="max-width: 50%" name = "category" required>
                     <?php while($row = mysqli_fetch_array($catResult)):;?>
                             <option selected hidden value ="">Select Category</option>
                             <option value="<?php echo $row[1];?>"><?php echo $row[1];?></option>
