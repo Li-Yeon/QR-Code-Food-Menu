@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2021 at 08:03 AM
+-- Generation Time: Dec 14, 2021 at 02:21 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -62,7 +62,8 @@ CREATE TABLE `food` (
 
 INSERT INTO `food` (`No`, `food_Code`, `food_Name`, `food_Price`, `food_Category`, `Image`) VALUES
 (1, 'FD001', 'Nasi Goreng Indonesia', 7.5, 'Asian', './images/nasi_goreng.jpg'),
-(2, 'FD002', 'Nasi Goreng Ayam', 7.5, 'Asian', './images/nasi_goreng_a.jpg');
+(2, 'FD002', 'Nasi Goreng Ayam', 7.5, 'Asian', './images/nasi_goreng_a.jpg'),
+(3, 'BV001', '100 Plus', 2.5, 'Beverages', './images/100plus.jpg');
 
 -- --------------------------------------------------------
 
@@ -75,6 +76,8 @@ CREATE TABLE `orders` (
   `TableNo` varchar(255) NOT NULL,
   `food_Code` varchar(255) NOT NULL,
   `food_Name` varchar(255) NOT NULL,
+  `food_Price` double NOT NULL,
+  `Image` varchar(255) NOT NULL,
   `Remarks` varchar(255) DEFAULT NULL,
   `Quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -83,10 +86,10 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`No`, `TableNo`, `food_Code`, `food_Name`, `Remarks`, `Quantity`) VALUES
-(27, '1', 'FD001', 'Nasi Goreng Indonesia', '', 7),
-(28, '2', 'FD002', 'Nasi Goreng Ayam', '', 2),
-(30, '1', 'FD001', 'Nasi Goreng Indonesia', 'Less Veggies', 3);
+INSERT INTO `orders` (`No`, `TableNo`, `food_Code`, `food_Name`, `food_Price`, `Image`, `Remarks`, `Quantity`) VALUES
+(31, '1', 'FD001', 'Nasi Goreng Indonesia', 7.5, './images/nasi_goreng.jpg', 'Extra Pedas', 2),
+(32, '1', 'FD002', 'Nasi Goreng Ayam', 7.5, './images/nasi_goreng_a.jpg', '', 1),
+(33, '1', 'BV001', '100 Plus', 2.5, './images/100plus.jpg', '', 1);
 
 -- --------------------------------------------------------
 
@@ -152,13 +155,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `No` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `No` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `No` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `No` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `users`
