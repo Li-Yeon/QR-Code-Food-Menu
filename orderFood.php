@@ -15,13 +15,21 @@ $conn = mysqli_connect($serverNameLocal, $usernameLocal, $passwordLocal, $dbName
 // Food Query
 $foodQuery = "SELECT * FROM food ORDER BY NO ASC";
 $fdQuery = mysqli_query($conn, $foodQuery);
+
 // Category Query
 $categoryQuery = "SELECT * FROM category ORDER BY NO ASC";
 $ctQuery = mysqli_query($conn, $categoryQuery);
+
+
 require_once "php/order.php";
 if(isset($_GET['tableNo']))
 {
-
+    // Cart Query
+    $tableNo = $_GET['tableNo'];
+    $cartQuery = "SELECT COUNT(*) AS 'TotalCart' FROM orders WHERE TableNo='$tableNo'";
+    $cartSqli = mysqli_query($conn, $cartQuery);
+    $totalCart = mysqli_fetch_assoc($cartSqli);
+    $totalCart = $totalCart['TotalCart'];
 }
 else
 {
@@ -59,9 +67,9 @@ else
 
     <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
         <li class="nav-item pe-5">
-          <a class="nav-link text-dark position-relative" href="#">
+          <a class="nav-link text-dark position-relative" href="cart.php?tableNo=<?php echo $_GET['tableNo']?>">
               <i class="fas fa-utensils fa-lg"></i>
-              <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+              <span class="position-absolute top-1 start-100 translate-middle badge rounded-pill bg-danger"><?php echo $totalCart?></span>
             </a>
         </li>
     </ul>
@@ -100,11 +108,11 @@ while($rows=mysqli_fetch_assoc($ctQuery))
     ?>
         <div class="col-sm d-flex justify-content-center pb-3">
             <div class="card" style="width: 18rem;">
-                <img src="<?php echo $rows['Image'];?>" class="card-img-top" alt="" style="height: 150px;object-fit: contain;" >
+                <img src="<?php echo $rows['Image'];?>" class="card-img-top" alt="" style="height: 150px;" >
                 <div class="card-body">
                 <h5 class="card-title"><?php echo $rows['food_Name'];?></h5>
                 <p class="card-text"><span class="fw-bold"><?php echo $rows['food_Code'];?></span><br>RM<?php echo $rows['food_Price'];?></p>
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $rows['food_Code'];?>">
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $rows['food_Code'];?>">
                 Add To Cart <i class="fas fa-arrow-circle-right"></i>
                 </button>
 
@@ -128,7 +136,7 @@ while($rows=mysqli_fetch_assoc($ctQuery))
        </div>  
       </div>
       <div class="modal-footer">
-      <button type="submit" class="btn btn-success" name="addToCart">Add To Cart <i class="fas fa-arrow-circle-right"></i></button>
+      <button type="submit" class="btn btn-warning" name="addToCart">Add To Cart <i class="fas fa-arrow-circle-right"></i></button>
       </div>
     </div>
   </div>

@@ -37,9 +37,11 @@ if (isset($_POST['addToCart'])){
 
         while ($row = mysqli_fetch_row($getFDCodeSqli)) {
             $foodName = $row[2];
+            $foodPrice = $row[3];
+            $Image = $row[5];
         }
 
-        $insertCartQuery = "INSERT INTO orders (TableNo, food_Code, food_Name, Remarks, Quantity) VALUES ('$tableNo', '$foodCode', '$foodName', '$remarks', '$qty')";
+        $insertCartQuery = "INSERT INTO orders (TableNo, food_Code, food_Name, food_Price, Image, Remarks, Quantity) VALUES ('$tableNo', '$foodCode', '$foodName', '$foodPrice', '$Image', '$remarks', '$qty')";
         $insertCartSqli = mysqli_query($conn, $insertCartQuery) or die (mysqli_error($conn));
         header("location:../orderFood.php?tableNo=".$tableNo);
     }
@@ -58,9 +60,11 @@ if (isset($_POST['addToCart'])){
     
             while ($row = mysqli_fetch_row($getFDCodeSqli)) {
                 $foodName = $row[2];
+                $foodPrice = $row[3];
+                $Image = $row[5];
             }
 
-            $insertCartQuery = "INSERT INTO orders (TableNo, food_Code, food_Name, Remarks, Quantity) VALUES ('$tableNo', '$foodCode', '$foodName', '$remarks', '$qty')";
+            $insertCartQuery = "INSERT INTO orders (TableNo, food_Code, food_Name, food_Price, Image, Remarks, Quantity) VALUES ('$tableNo', '$foodCode', '$foodName', '$foodPrice', '$Image', '$remarks', '$qty')";
             $insertCartSqli = mysqli_query($conn, $insertCartQuery) or die (mysqli_error($conn));
             header("location:../orderFood.php?tableNo=".$tableNo);
         }
