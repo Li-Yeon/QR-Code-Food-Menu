@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once "db.php";
 require_once "php/table.php";
+//require_once "php/food-code.php";
 if(isset($_SESSION['Admin']))
     {
 
@@ -96,60 +96,16 @@ if(isset($_SESSION['Admin']))
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-left ml-auto ml-3 pl-1">
-                        <!-- Notification -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle pl-md-3 position-relative" href="javascript:void(0)"
-                                id="bell" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <span><i data-feather="bell" class="svg-icon"></i></span>
-                                <span class="badge badge-primary notify-no rounded-circle">2</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-left mailbox animated bounceInDown">
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="message-center notifications position-relative">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)"
-                                                class="message-item d-flex align-items-center border-bottom px-3 py-2">
+<!-- Log Out -->
+<a class="m-3" href="logout.php">Logout</a>
+                        <!-- End Log Out -->
 
-                                                <div class="w-75 d-inline-block v-middle pl-2">
-                                                    <h6 class="message-title mb-0 mt-1">Luanch Admin</h6>
-                                                    <span class="font-12 text-nowrap d-block text-muted">Just see
-                                                        the my new
-                                                        admin!</span>
-                                                    <span class="font-12 text-nowrap d-block text-muted">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)"
-                                                class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                                <div class="w-75 d-inline-block v-middle pl-2">
-                                                    <h6 class="message-title mb-0 mt-1">Event today</h6>
-                                                    <span
-                                                        class="font-12 text-nowrap d-block text-muted text-truncate">Just
-                                                        a reminder that you have event</span>
-                                                    <span class="font-12 text-nowrap d-block text-muted">9:10 AM</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link pt-3 text-center text-dark" href="javascript:void(0);">
-                                            <strong>Check all notifications</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- End Notification -->
-                        <!-- ============================================================== -->
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                       <!-- ============================================================== -->
+                        <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
@@ -172,7 +128,7 @@ if(isset($_SESSION['Admin']))
                 </div>
             </nav>
         </header>
-
+        
         <!-- Left Bar -->
         <aside class="left-sidebar" data-sidebarbg="skin6">
             <div class="scroll-sidebar" data-sidebarbg="skin6">
@@ -188,9 +144,9 @@ if(isset($_SESSION['Admin']))
                                 aria-expanded="false"><i class="far fa-sticky-note"></i><span
                                     class="hide-menu">Orders</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="tables.php"
-                                aria-expanded="false"><i class="far fa-square"></i><span
-                                    class="hide-menu">Tables</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="transaction.php"
+                                aria-expanded="false"><i class="far fa-clone"></i><span
+                                    class="hide-menu">Transactions</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="foods.php"
                                 aria-expanded="false"><i class="fas fa-utensils"></i><span
@@ -206,17 +162,14 @@ if(isset($_SESSION['Admin']))
                                     class="feather-icon"></i><span class="hide-menu">Users
                                 </span></a>
                         </li>
-
-                        <!-- Log out -->            
-                        <li class="list-divider"></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="logout.php"aria-expanded="false">
-                            <i data-feather="log-out" class="feather-icon"></i>
-                            <span class="hide-menu">Logout</span></a></li>
                     </ul>
                 </nav>
             </div>
         </aside>
         <!-- Left Bar -->
+
+        <!-- Create div with margin of 5 -->
+        
 
         <div class="page-wrapper">
             <!-- ============================================================== -->
@@ -225,16 +178,54 @@ if(isset($_SESSION['Admin']))
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Tables</h3>
-                        <a href="addtables.php"><button type="button" class="btn btn-success mt-3">Add Tables <i class="far fa-plus-square"></i></button></a>
-
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Transactions</h3>
                     </div>
                 </div>
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">             
-            
+                <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                            <th>#</th>
+                                            <th>Table No</th>
+                                            <th>Food Code</th>
+                                            <th>Food Name</th>
+                                            <th>Food Price</th>
+                                            <th>Remarks</th>
+                                            <th>Quantity</th>
+                                            <th>Total (RM)</th>
+                                            <th>Date</th>
+                                            <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+                                        while($rows=mysqli_fetch_assoc($transactionTable))
+                                    {
+                                        ?>
+                                        <tr>
+                                        <td><?php echo $rows['No'];?></td>
+                                        <td><?php echo $rows['TableNo'];?></td>
+                                        <td><?php echo $rows['food_Code'];?></td>
+                                        <td><?php echo $rows['food_Name'];?></td>
+                                        <td><?php echo $rows['food_Price'];?></td>
+                                        <td><?php echo $rows['Remarks'];?></td>
+                                        <td><?php echo $rows['Quantity'];?></td>
+                                        <td><?php echo $rows['TotalPrice'];?></td>
+                                        <td><?php echo $rows['Date'];?></td>
+                                            <td class ="tableAction">
+                                        <a href="print.php?edit=<?php echo $rows['No'];?>"><button type="button" class="btn btn-outline-success"><i class="fas fa-print"></i></button></a>
+                                            </td>
+                            </tr>
+                            <?php
+                        }
+                    ?>                              
+                                        </tbody>
+                </table>
+                </div>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->

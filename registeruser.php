@@ -143,9 +143,9 @@ if(isset($_SESSION['Admin']))
                                 aria-expanded="false"><i class="far fa-sticky-note"></i><span
                                     class="hide-menu">Orders</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="tables.php"
-                                aria-expanded="false"><i class="far fa-square"></i><span
-                                    class="hide-menu">Tables</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="transaction.php"
+                                aria-expanded="false"><i class="far fa-clone"></i><span
+                                    class="hide-menu">Transactions</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="foods.php"
                                 aria-expanded="false"><i class="fas fa-utensils"></i><span

@@ -153,9 +153,9 @@ if(isset($_GET['tableNo']))
                                 aria-expanded="false"><i class="far fa-sticky-note"></i><span
                                     class="hide-menu">Orders</span></a></li>
 
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="tables.php"
-                                aria-expanded="false"><i class="far fa-square"></i><span
-                                    class="hide-menu">Tables</span></a></li>
+                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="transaction.php"
+                                aria-expanded="false"><i class="far fa-clone"></i><span
+                                    class="hide-menu">Transactions</span></a></li>
 
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="foods.php"
                                 aria-expanded="false"><i class="fas fa-utensils"></i><span
@@ -188,17 +188,15 @@ if(isset($_GET['tableNo']))
                 <div class="row">
                     <div class="col-7 align-self-center">
                         <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Manage Orders</h3>
-                        <a href="addfood.php"><button type="button" class="btn btn-success mt-3">Add Order <i class="far fa-plus-square"></i></button></a>
-
                     </div>
                 </div>
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">       
-            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Table #<?php echo $tableNo?></h3>      
+            <h3 class="page-title text-truncate text-info font-weight-medium mb-3">Table #<?php echo $tableNo?></h3>      
                 <div class="table-responsive">
-                <table class="table table-striped table-bordered table-hover">
+                <table class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
                                             <th>#</th>
@@ -207,7 +205,7 @@ if(isset($_GET['tableNo']))
                                             <th>Food Price</th>
                                             <th>Remarks</th>
                                             <th>Quantity</th>
-                                            <th>Total</th>
+                                            <th>Total (RM)</th>
                                             <th>Action</th>
                                             </tr>
                                         </thead>
@@ -225,8 +223,7 @@ if(isset($_GET['tableNo']))
                                         <td><?php echo $rows['Quantity'];?></td>
                                         <td><?php echo $rows['TotalPrice'];?></td>
                                         <td class ="tableAction">
-                                        <a href="editfood.php?edit=<?php echo $rows['No'];?>"><button type="button" class="btn btn-outline-success"><i class="far fa-edit iconEdit"></i></button></a>
-                                        <a href="foods.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete food?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+                                        <a href="confirm-order.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete food?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
                                             </td>
                             </tr>
                             <?php
@@ -235,6 +232,7 @@ if(isset($_GET['tableNo']))
                                         </tbody>
                 </table>
                 </div>
+                <a href="confirm-order.php?paid=<?php echo $tableNo;?>&tableNo=<?php echo $tableNo?>" onclick="return confirm('Confirm order?');"><button type="button" class="btn btn-success">Confirm Order</button></a>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->

@@ -23,4 +23,8 @@ $reqTable = mysqli_query($conn, $reqQuery);
 // Distinct Tables
 $distinctTableQuery = "SELECT * from requestorder GROUP BY TableNo;";
 $distinctTable = mysqli_query($conn, $distinctTableQuery);
+
+// Transaction Table
+$transactionQuery = "SELECT * FROM confirmorder";
+$transactionTable = mysqli_query($conn, $transactionQuery);
 ?>

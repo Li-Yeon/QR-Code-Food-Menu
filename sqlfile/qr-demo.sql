@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 18, 2021 at 08:08 AM
+-- Generation Time: Dec 18, 2021 at 04:15 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -40,6 +40,24 @@ INSERT INTO `category` (`No`, `Category`) VALUES
 (1, 'Asian'),
 (2, 'Beverages'),
 (3, 'Western');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `confirmorder`
+--
+
+CREATE TABLE `confirmorder` (
+  `No` int(11) NOT NULL,
+  `TableNo` varchar(255) NOT NULL,
+  `food_Code` varchar(255) NOT NULL,
+  `food_Name` varchar(255) NOT NULL,
+  `food_Price` double NOT NULL,
+  `Remarks` varchar(255) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `TotalPrice` double NOT NULL,
+  `Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -81,7 +99,8 @@ CREATE TABLE `orders` (
   `Image` varchar(255) NOT NULL,
   `Remarks` varchar(255) DEFAULT NULL,
   `Quantity` int(11) NOT NULL,
-  `TotalPrice` double NOT NULL
+  `TotalPrice` double NOT NULL,
+  `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -91,7 +110,7 @@ CREATE TABLE `orders` (
 --
 
 CREATE TABLE `requestorder` (
-  `No` int(11) NOT NULL,
+  `No` int(10) UNSIGNED NOT NULL,
   `TableNo` varchar(255) NOT NULL,
   `food_Code` varchar(255) NOT NULL,
   `food_Name` varchar(255) NOT NULL,
@@ -99,18 +118,9 @@ CREATE TABLE `requestorder` (
   `Image` varchar(255) NOT NULL,
   `Remarks` varchar(255) NOT NULL,
   `Quantity` int(11) NOT NULL,
-  `TotalPrice` double NOT NULL
+  `TotalPrice` double NOT NULL,
+  `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `requestorder`
---
-
-INSERT INTO `requestorder` (`No`, `TableNo`, `food_Code`, `food_Name`, `food_Price`, `Image`, `Remarks`, `Quantity`, `TotalPrice`) VALUES
-(24, '1', 'FD001', 'Nasi Goreng Indonesia', 7.5, './images/nasi_goreng.jpg', '', 1, 7.5),
-(25, '1', 'FD002', 'Nasi Goreng Ayam', 7.5, './images/nasi_goreng_a.jpg', '', 1, 7.5),
-(26, '1', 'BV001', '100 Plus', 2.5, './images/100plus.jpg', '', 1, 2.5),
-(27, '2', 'FD001', 'Nasi Goreng Indonesia', 7.5, './images/nasi_goreng.jpg', '', 1, 7.5);
 
 -- --------------------------------------------------------
 
@@ -142,6 +152,12 @@ INSERT INTO `users` (`No`, `Name`, `Username`, `Password`) VALUES
 -- Indexes for table `category`
 --
 ALTER TABLE `category`
+  ADD PRIMARY KEY (`No`);
+
+--
+-- Indexes for table `confirmorder`
+--
+ALTER TABLE `confirmorder`
   ADD PRIMARY KEY (`No`);
 
 --
@@ -179,6 +195,12 @@ ALTER TABLE `category`
   MODIFY `No` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `confirmorder`
+--
+ALTER TABLE `confirmorder`
+  MODIFY `No` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
@@ -188,13 +210,13 @@ ALTER TABLE `food`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `No` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `No` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `requestorder`
 --
 ALTER TABLE `requestorder`
-  MODIFY `No` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `No` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

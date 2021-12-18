@@ -13,6 +13,9 @@ $dbNameLocal = "qr-demo";
 //$conn = mysqli_connect($serverName, $username, $password, $dbName);
 $conn = mysqli_connect($serverNameLocal, $usernameLocal, $passwordLocal, $dbNameLocal);
 
+date_default_timezone_set("Asia/Kuala_Lumpur");
+$date = date('Y/m/d');
+
 //Add Cart
 if (isset($_POST['addToCart'])){
     $tableNo = $_GET['orderFood'];
@@ -41,7 +44,7 @@ if (isset($_POST['addToCart'])){
             $Image = $row[5];
         }
 
-        $insertCartQuery = "INSERT INTO orders (TableNo, food_Code, food_Name, food_Price, Image, Remarks, Quantity) VALUES ('$tableNo', '$foodCode', '$foodName', '$foodPrice', '$Image', '$remarks', '$qty')";
+        $insertCartQuery = "INSERT INTO orders (TableNo, food_Code, food_Name, food_Price, Image, Remarks, Quantity, Date) VALUES ('$tableNo', '$foodCode', '$foodName', '$foodPrice', '$Image', '$remarks', '$qty', '$date')";
         $insertCartSqli = mysqli_query($conn, $insertCartQuery) or die (mysqli_error($conn));
         header("location:../orderFood.php?tableNo=".$tableNo);
     }
@@ -63,8 +66,7 @@ if (isset($_POST['addToCart'])){
                 $foodPrice = $row[3];
                 $Image = $row[5];
             }
-
-            $insertCartQuery = "INSERT INTO orders (TableNo, food_Code, food_Name, food_Price, Image, Remarks, Quantity) VALUES ('$tableNo', '$foodCode', '$foodName', '$foodPrice', '$Image', '$remarks', '$qty')";
+            $insertCartQuery = "INSERT INTO orders (TableNo, food_Code, food_Name, food_Price, Image, Remarks, Quantity, Date) VALUES ('$tableNo', '$foodCode', '$foodName', '$foodPrice', '$Image', '$remarks', '$qty', '$date')";
             $insertCartSqli = mysqli_query($conn, $insertCartQuery) or die (mysqli_error($conn));
             header("location:../orderFood.php?tableNo=".$tableNo);
         }

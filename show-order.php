@@ -44,15 +44,19 @@ else
 <!-- Content -->
 <div class="container d-flex justify-content-center">
 
-<div class="card m-5" style="width: 22rem;">
+<div class="card mt-5" style="width: 22rem;">
   <img src="cashier-machine.png" class="mt-2" alt="..." style="width:150px;height:150px;display:block;margin-left:auto;margin-right:auto;">
   <div class="card-body">
     <p class="card-text fw-bold text-center"style="font-family: 'Roboto Condensed', sans-serif;">Show this to the cashier and pay then your order will be confirmed 🙂</p>
     <p class="card-text fw-bold text-center h4"style="font-family: 'Roboto Condensed', sans-serif;">Table No: <?php echo $tableNo?></p>
   </div>
 </div>
-
 </div>
+
+<div class="mt-2 d-flex justify-content-center">
+<a href="orderFood.php?tableNo=<?php echo $tableNo;?>"><button type="button" class="btn btn-success">Order Again!</button></a>
+</div>
+
 
 </body>
 </html>
