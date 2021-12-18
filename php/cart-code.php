@@ -81,11 +81,8 @@ if (isset($_POST['confirmOrder'])){
     {
         $data['message'] = 'hello world';
         $pusher->trigger('my-channel', 'my-event', $data);
+        header("location:./show-order.php?tableNo=".$tableNo);
     }
 
-    $data['message'] = 'hello world';
-    $pusher->trigger('my-channel', 'my-event', $data);
-
-    header("location:./empty.php");
 }
 ?>

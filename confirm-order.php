@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once "db.php";
-require_once "php/table.php";
+require_once "php/confirmO-code.php";
 if(isset($_SESSION['Admin']))
     {
 
@@ -12,6 +12,15 @@ if(isset($_SESSION['Admin']))
         echo '<script>location.href="./admin/login.php";</script>';
         exit();
     }  
+
+// get request
+if(isset($_GET['tableNo']))
+{
+    $tableNo = $_GET['tableNo'];
+    //Request Order
+    $reqQuery = "SELECT * FROM requestorder WHERE TableNo='$tableNo'";
+    $reqTable = mysqli_query($conn, $reqQuery);
+}
 ?>
 
 <!DOCTYPE html>
@@ -168,6 +177,9 @@ if(isset($_SESSION['Admin']))
         </aside>
         <!-- Left Bar -->
 
+        <!-- Create div with margin of 5 -->
+        
+
         <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
@@ -175,37 +187,46 @@ if(isset($_SESSION['Admin']))
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Users</h3>
-                        <a href="registeruser.php"><button type="button" class="btn btn-success mt-3">Add Users <i class="far fa-plus-square"></i></button></a>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Manage Orders</h3>
+                        <a href="addfood.php"><button type="button" class="btn btn-success mt-3">Add Order <i class="far fa-plus-square"></i></button></a>
 
                     </div>
                 </div>
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <div class="container-fluid">             
-            <div class="table-responsive">
+            <div class="container-fluid">       
+            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Table #<?php echo $tableNo?></h3>      
+                <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
                                             <th>#</th>
-                                            <th>Name</th>
-                                            <th>Username</th>
+                                            <th>Food Code</th>
+                                            <th>Food Name</th>
+                                            <th>Food Price</th>
+                                            <th>Remarks</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
                                             <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         <?php
-                                        while($rows=mysqli_fetch_assoc($userTable))
+                                        while($rows=mysqli_fetch_assoc($reqTable))
                                     {
                                         ?>
                                         <tr>
                                         <td><?php echo $rows['No'];?></td>
-                                        <td><?php echo $rows['Name'];?></td>
-                                        <td><?php echo $rows['Username'];?></td>
-                                            <td class ="tableAction">
-                            
-                                        <a href="php/user.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete User?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+                                        <td><?php echo $rows['food_Code'];?></td>
+                                        <td><?php echo $rows['food_Name'];?></td>
+                                        <td><?php echo $rows['food_Price'];?></td>
+                                        <td><?php echo $rows['Remarks'];?></td>
+                                        <td><?php echo $rows['Quantity'];?></td>
+                                        <td><?php echo $rows['TotalPrice'];?></td>
+                                        <td class ="tableAction">
+                                        <a href="editfood.php?edit=<?php echo $rows['No'];?>"><button type="button" class="btn btn-outline-success"><i class="far fa-edit iconEdit"></i></button></a>
+                                        <a href="foods.php?delete=<?php echo $rows['No'];?>" onclick="return confirm('Confirm delete food?');"><button type="button" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
                                             </td>
                             </tr>
                             <?php

@@ -104,7 +104,7 @@ else
   </div>
 </div>
 <form method="POST">
-<button type="submit" class="btn btn-success mt-3 mb-3 w-100 btn-lg" name="confirmOrder">Confirm Order</button>
+<button type="submit" class="btn btn-success mt-3 mb-3 w-100 btn-lg" name="confirmOrder" onclick="return confirm('Confirm order?');">Confirm Order</button>
 </form>
 </div>
 <!-- Container Div-->

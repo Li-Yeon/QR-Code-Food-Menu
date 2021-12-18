@@ -96,60 +96,16 @@ if(isset($_SESSION['Admin']))
                     <!-- toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-left ml-auto ml-3 pl-1">
-                        <!-- Notification -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle pl-md-3 position-relative" href="javascript:void(0)"
-                                id="bell" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <span><i data-feather="bell" class="svg-icon"></i></span>
-                                <span class="badge badge-primary notify-no rounded-circle">2</span>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-left mailbox animated bounceInDown">
-                                <ul class="list-style-none">
-                                    <li>
-                                        <div class="message-center notifications position-relative">
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)"
-                                                class="message-item d-flex align-items-center border-bottom px-3 py-2">
+ <!-- Log Out -->
+ <a class="m-3" href="logout.php">Logout</a>
+                        <!-- End Log Out -->
 
-                                                <div class="w-75 d-inline-block v-middle pl-2">
-                                                    <h6 class="message-title mb-0 mt-1">Luanch Admin</h6>
-                                                    <span class="font-12 text-nowrap d-block text-muted">Just see
-                                                        the my new
-                                                        admin!</span>
-                                                    <span class="font-12 text-nowrap d-block text-muted">9:30 AM</span>
-                                                </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="javascript:void(0)"
-                                                class="message-item d-flex align-items-center border-bottom px-3 py-2">
-                                                <div class="w-75 d-inline-block v-middle pl-2">
-                                                    <h6 class="message-title mb-0 mt-1">Event today</h6>
-                                                    <span
-                                                        class="font-12 text-nowrap d-block text-muted text-truncate">Just
-                                                        a reminder that you have event</span>
-                                                    <span class="font-12 text-nowrap d-block text-muted">9:10 AM</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link pt-3 text-center text-dark" href="javascript:void(0);">
-                                            <strong>Check all notifications</strong>
-                                            <i class="fa fa-angle-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <!-- End Notification -->
-                        <!-- ============================================================== -->
                     </ul>
                     <!-- ============================================================== -->
                     <!-- Right side toggle and nav items -->
                     <!-- ============================================================== -->
                     <ul class="navbar-nav float-right">
-                       <!-- ============================================================== -->
+                        <!-- ============================================================== -->
                         <!-- User profile and search -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown">
@@ -206,12 +162,6 @@ if(isset($_SESSION['Admin']))
                                     class="feather-icon"></i><span class="hide-menu">Users
                                 </span></a>
                         </li>
-
-                        <!-- Log out -->            
-                        <li class="list-divider"></li>
-                        <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="logout.php"aria-expanded="false">
-                            <i data-feather="log-out" class="feather-icon"></i>
-                            <span class="hide-menu">Logout</span></a></li>
                     </ul>
                 </nav>
             </div>
