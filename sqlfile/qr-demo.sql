@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2021 at 02:21 PM
+-- Generation Time: Dec 18, 2021 at 08:08 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.11
 
@@ -63,7 +63,8 @@ CREATE TABLE `food` (
 INSERT INTO `food` (`No`, `food_Code`, `food_Name`, `food_Price`, `food_Category`, `Image`) VALUES
 (1, 'FD001', 'Nasi Goreng Indonesia', 7.5, 'Asian', './images/nasi_goreng.jpg'),
 (2, 'FD002', 'Nasi Goreng Ayam', 7.5, 'Asian', './images/nasi_goreng_a.jpg'),
-(3, 'BV001', '100 Plus', 2.5, 'Beverages', './images/100plus.jpg');
+(3, 'BV001', '100 Plus', 2.5, 'Beverages', './images/100plus.jpg'),
+(4, 'FD003', 'Spaghetti Bolognese', 12, 'Western', './images/Spaghetti-Bolognese.jpg');
 
 -- --------------------------------------------------------
 
@@ -72,24 +73,44 @@ INSERT INTO `food` (`No`, `food_Code`, `food_Name`, `food_Price`, `food_Category
 --
 
 CREATE TABLE `orders` (
-  `No` int(11) NOT NULL,
+  `No` int(10) UNSIGNED NOT NULL,
   `TableNo` varchar(255) NOT NULL,
   `food_Code` varchar(255) NOT NULL,
   `food_Name` varchar(255) NOT NULL,
   `food_Price` double NOT NULL,
   `Image` varchar(255) NOT NULL,
   `Remarks` varchar(255) DEFAULT NULL,
-  `Quantity` int(11) NOT NULL
+  `Quantity` int(11) NOT NULL,
+  `TotalPrice` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requestorder`
+--
+
+CREATE TABLE `requestorder` (
+  `No` int(11) NOT NULL,
+  `TableNo` varchar(255) NOT NULL,
+  `food_Code` varchar(255) NOT NULL,
+  `food_Name` varchar(255) NOT NULL,
+  `food_Price` double NOT NULL,
+  `Image` varchar(255) NOT NULL,
+  `Remarks` varchar(255) NOT NULL,
+  `Quantity` int(11) NOT NULL,
+  `TotalPrice` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `orders`
+-- Dumping data for table `requestorder`
 --
 
-INSERT INTO `orders` (`No`, `TableNo`, `food_Code`, `food_Name`, `food_Price`, `Image`, `Remarks`, `Quantity`) VALUES
-(31, '1', 'FD001', 'Nasi Goreng Indonesia', 7.5, './images/nasi_goreng.jpg', 'Extra Pedas', 2),
-(32, '1', 'FD002', 'Nasi Goreng Ayam', 7.5, './images/nasi_goreng_a.jpg', '', 1),
-(33, '1', 'BV001', '100 Plus', 2.5, './images/100plus.jpg', '', 1);
+INSERT INTO `requestorder` (`No`, `TableNo`, `food_Code`, `food_Name`, `food_Price`, `Image`, `Remarks`, `Quantity`, `TotalPrice`) VALUES
+(24, '1', 'FD001', 'Nasi Goreng Indonesia', 7.5, './images/nasi_goreng.jpg', '', 1, 7.5),
+(25, '1', 'FD002', 'Nasi Goreng Ayam', 7.5, './images/nasi_goreng_a.jpg', '', 1, 7.5),
+(26, '1', 'BV001', '100 Plus', 2.5, './images/100plus.jpg', '', 1, 2.5),
+(27, '2', 'FD001', 'Nasi Goreng Indonesia', 7.5, './images/nasi_goreng.jpg', '', 1, 7.5);
 
 -- --------------------------------------------------------
 
@@ -136,6 +157,12 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`No`);
 
 --
+-- Indexes for table `requestorder`
+--
+ALTER TABLE `requestorder`
+  ADD PRIMARY KEY (`No`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -155,13 +182,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `food`
 --
 ALTER TABLE `food`
-  MODIFY `No` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `No` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `No` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `No` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `requestorder`
+--
+ALTER TABLE `requestorder`
+  MODIFY `No` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `users`

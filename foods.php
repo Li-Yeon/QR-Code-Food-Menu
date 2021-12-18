@@ -219,6 +219,9 @@ if(isset($_SESSION['Admin']))
         </aside>
         <!-- Left Bar -->
 
+        <!-- Create div with margin of 5 -->
+        
+
         <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
@@ -228,7 +231,6 @@ if(isset($_SESSION['Admin']))
                     <div class="col-7 align-self-center">
                         <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Foods</h3>
                         <a href="addfood.php"><button type="button" class="btn btn-success mt-3">Add Food <i class="far fa-plus-square"></i></button></a>
-
                     </div>
                 </div>
             </div>

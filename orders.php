@@ -36,6 +36,8 @@ if(isset($_SESSION['Admin']))
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -231,8 +233,36 @@ if(isset($_SESSION['Admin']))
             </div>
             <!-- Container fluid  -->
             <!-- ============================================================== -->
-            <div class="container-fluid">             
-                
+            <div class="container-fluid">   
+
+                <div class="row mx-3">
+
+                <?php
+                while($rows=mysqli_fetch_assoc($distinctTable))
+                {
+                ?>
+                <div class="card mx-3" style="width: 18rem;">
+                    <div class="card-header bg-dark text-white">
+                        <?php echo $rows['TableNo']; ?>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        
+                        <li class="list-group-item">An item</li>
+                        <li class="list-group-item">A second item</li>
+                        <li class="list-group-item">A third item</li>
+
+                        <a href="#" class="btn btn-primary stretched-link">Open Order</a>
+                    </ul>
+                </div>
+                <?php
+                }
+                ?>
+
+                </div>
+
+                <div id="getorders">
+
+                </div>
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -277,5 +307,21 @@ if(isset($_SESSION['Admin']))
     <script src="assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
     <script src="dist/js/pages/dashboards/dashboard1.min.js"></script>
 </body>
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script>
 
+var pusher = new Pusher('6b93243aa352bf9957fb', {
+  cluster: 'ap1'
+});
+
+var channel = pusher.subscribe('my-channel');
+channel.bind('my-event', function(data) {
+
+   $.ajax({url: "php/get-order.php", success: function(result){
+     $("#getorders").html(result);
+   }});
+   
+
+});
+</script>
 </html>

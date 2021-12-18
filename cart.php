@@ -1,5 +1,6 @@
 <?php
 require_once "db.php";
+require_once "php/cart-code.php";
 if(isset($_GET['tableNo']))
 {
     // Cart Query
@@ -34,6 +35,7 @@ else
     <link rel="stylesheet" href="cart.css">
 
     <title>Menu</title>
+
 </head>
 
 <body>
@@ -56,7 +58,10 @@ else
 <!-- Container Div-->
 <div class="container-fluid m-1">
     
-    <a class="link-warning" href="orderFood.php?tableNo=<?php echo $_GET['tableNo']?>"><h4 class ="mt-3" style="font-family: 'Roboto Condensed', sans-serif;">Continue Ordering</h4></a>
+    <div class="continue-order mt-3">
+    <a class="link-warning" href="orderFood.php?tableNo=<?php echo $_GET['tableNo']?>"><span style="font-family: 'Roboto Condensed', sans-serif;" class="h3">Continue Ordering</span></a>
+    </div>
+
     <h3 class ="mt-3" style="font-family: 'Roboto Condensed', sans-serif;">Food Cart</h3>
 
 <!-- Card-->    
@@ -67,21 +72,22 @@ else
   <div class="card mb-2">
         <div class="row no-gutters">
             <div class="col-auto">
-                <img src="<?php echo $rows['Image'];?>" class="img-fluid" alt="" style="width:200px; height:150px;">
+                <img src="<?php echo $rows['Image'];?>" class="img-fluid" alt="" style="width:200px; height:160px;">
             </div>
             <div class="col">
-                <div class="card-block mt-3">
+                <div class="card-block mt-3 cart-items">
+                    <a href="cart.php?tableNo=<?php echo $tableNo?>&delete=<?php echo $rows['No'];?>" style="position:absolute; right: 20px; color:red;"onclick="return confirm('Confirm remove food?');"><i class="fas fa-trash"></i></a>
                     <h4 class="card-title"><?php echo $rows['food_Name'];?></h4>
-                    <p class="card-text fw-bold">RM<?php echo $rows['food_Price'];?></p>
+                    <p class="card-text fw-bold cart-price">RM<?php echo $rows['food_Price'];?></p>
                     <div class="d-flex">
-                    <input type="number" class="form-control" name="qty" value = "<?php echo $rows['Quantity'];?>" style="text-align:center;" min="1">     
-                    <a href="#" class="btn btn-danger">Remove</a>
+                    <a href="cart.php?tableNo=<?php echo $tableNo?>&minus=<?php echo $rows['No'];?>" class="btn btn-danger">-</a>
+                    <input type="number" class="form-control cart-quantity-input w-50 mx-1" id="quantity" value = "<?php echo $rows['Quantity'];?>" style="text-align:center;" min="1" readonly>     
+                    <a href="cart.php?tableNo=<?php echo $tableNo?>&plus=<?php echo $rows['No'];?>" class="btn btn-success">+</a>
                     </div>
-
                 </div>
             </div>
         </div>
-        <div class="card-footer w-100 text-muted">
+        <div class="card-footer w-100 text-muted d-flex">
         <p class="card-text"><?php if($rows['Remarks'] == ""){echo '<small class="text-muted">No Remarks</small>';}else{echo '<small class="text-muted">'.$rows['Remarks'].'</small>';};?></p>
         </div>
   </div>
@@ -93,17 +99,64 @@ else
 <div class="card">
   <div class="card-body">
     <h5 style="font-family: 'Roboto Condensed', sans-serif;" class="mb-4 fw-bold"><span style="position:absolute; right: 35px;">RM</span></h5>
-    <h4 style="font-family: 'Roboto Condensed', sans-serif;">Service Tax <span style="position:absolute; right: 30px;">3.50</span></h4>
-    <h4 style="font-family: 'Roboto Condensed', sans-serif;">Subtotal <span style="position:absolute; right: 30px;">56.75</span></h4>
-
+    <h4 style="font-family: 'Roboto Condensed', sans-serif;">Service Tax <span style="position:absolute; right: 30px;">0</span></h4>
+    <h4 style="font-family: 'Roboto Condensed', sans-serif;">Subtotal <span style="position:absolute; right: 30px;" class="cart-total-price"></span></h4>
   </div>
 </div>
-
-
-
-
+<form method="POST">
+<button type="submit" class="btn btn-success mt-3 mb-3 w-100 btn-lg" name="confirmOrder">Confirm Order</button>
+</form>
 </div>
 <!-- Container Div-->
-
 </body>
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="assets/libs/popper.js/dist/umd/popper.min.js"></script>
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
+<script>
+  if (document.readyState == 'loading') {
+    document.addEventListener('DOMContentLoaded', ready)
+  } else {
+    ready()
+  }
+  function ready()
+  {
+    updateCartTotal();
+    var quantityInputs = document.getElementsByClassName('cart-quantity-input')
+    for (var i = 0; i < quantityInputs.length; i++) {
+      var input = quantityInputs[i]
+      input.addEventListener('change', quantityChanged)
+    }
+    
+  }
+
+function quantityChanged(event)
+{
+  var input = event.target;
+  if(isNaN(input.value) || input.value <= 0)
+  {
+    input.value = 1;
+  }
+  updateCartTotal();
+}
+
+function updateCartTotal(){
+  var cartRows = document.getElementsByClassName('cart-items')
+  var total = 0;
+  for(var i = 0; i < cartRows.length; i++){
+    var cartRow = cartRows[i];
+    var priceElement = cartRow.getElementsByClassName('cart-price')[0];
+    var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
+    var price = parseFloat(priceElement.innerText.replace('RM',''));
+    var quantity = quantityElement.value;
+    total = total + (price * quantity);
+  }
+total = Math.round(total * 100) / 100;
+document.getElementsByClassName('cart-total-price')[0].innerText = 'RM' + total;
+}
+
+
+</script>
+
 </html>

@@ -12,4 +12,15 @@ $fdQuery = mysqli_query($conn, $foodQuery);
 //User Table
 $userQuery = "SELECT * FROM users ORDER BY No ASC";
 $userTable = mysqli_query($conn, $userQuery);
+
+
+// Orders Section
+
+//Request Order
+$reqQuery = "SELECT * FROM requestorder";
+$reqTable = mysqli_query($conn, $reqQuery);
+
+// Distinct Tables
+$distinctTableQuery = "SELECT * from requestorder GROUP BY TableNo;";
+$distinctTable = mysqli_query($conn, $distinctTableQuery);
 ?>
