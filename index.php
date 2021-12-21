@@ -49,21 +49,27 @@ require_once "php/table.php";
 
 <div class="container pt-4 px-md-5 px-sm-4 px-5">
 <h5>Categories</h5>
-
+<form method="GET" action="">
+<button type="submit">Search</button>
 <?php
-while($rows=mysqli_fetch_assoc($ctQuery))
+foreach($ctQuery as $category)
 {
+  $checked = [];
+  if(isset($_GET['category']))
+  {
+    $checked = $_GET['category'];
+  }
 ?>
 <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-  <label class="form-check-label" for="flexCheckDefault">
-    <?php echo $rows['Category'];?>
-  </label> 
+  <input class="form-check-input" type="checkbox" name="category[]" value="<?=$category['No'];?>"
+    <?php if(in_array($category['No'], $checked)){echo "checked"; } ?>>
+    <?=$category['Category'];?>
+    
 </div>
 <?php
 }
 ?>
-
+</form>
 </div>
 
 <!-- Content -->
@@ -72,20 +78,46 @@ while($rows=mysqli_fetch_assoc($ctQuery))
     <div class="row pt-5 pb-2">
 
     <?php
-    while($rows=mysqli_fetch_assoc($fdQuery))
+    if(isset($_GET['category']))
     {
-    ?>
-        <div class="col-sm d-flex justify-content-center pb-3">
-            <div class="card" style="width: 18rem;">
-                <img src="<?php echo $rows['Image'];?>" class="card-img-top" alt="" style="height: 150px;object-fit: contain;" >
-                <div class="card-body">
-                <h5 class="card-title"><?php echo $rows['food_Name'];?></h5>
-                <p class="card-text">RM<?php echo $rows['food_Price'];?></p>
-                <a href="#" class="btn btn-success">Add To Cart <i class="fas fa-arrow-circle-right"></i></a>
+      $categorychecked = [];
+      $categorychecked = $_GET['category'];
+      foreach($categorychecked as $foodrow)
+      {
+        $foods = "SELECT * FROM food WHERE Category_No IN ($foodrow)";
+        $foodsQuery = mysqli_query($conn, $foods);
+        foreach($foodsQuery as $food) :
+          ?>
+            <div class="col-sm d-flex justify-content-center pb-3">
+                <div class="card" style="width: 18rem;">
+                    <img src="<?php echo $food['Image'];?>" class="card-img-top" alt="" style="height: 150px;object-fit: contain;" >
+                    <div class="card-body">
+                    <h5 class="card-title"><?php echo $food['food_Name'];?></h5>
+                    <p class="card-text">RM<?php echo $food['food_Price'];?></p>
+                    <a href="#" class="btn btn-success">Add To Cart <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
                 </div>
             </div>
-        </div>
-    <?php
+          <?php
+        endforeach;
+      }
+    }
+    else
+    {
+      foreach($fdQuery as $food) :
+      ?>
+          <div class="col-sm d-flex justify-content-center pb-3">
+              <div class="card" style="width: 18rem;">
+                  <img src="<?php echo $food['Image'];?>" class="card-img-top" alt="" style="height: 150px;object-fit: contain;" >
+                  <div class="card-body">
+                  <h5 class="card-title"><?php echo $food['food_Name'];?></h5>
+                  <p class="card-text">RM<?php echo $food['food_Price'];?></p>
+                  <a href="#" class="btn btn-success">Add To Cart <i class="fas fa-arrow-circle-right"></i></a>
+                  </div>
+              </div>
+          </div>
+      <?php
+      endforeach;
     }
     ?>
     </div>
